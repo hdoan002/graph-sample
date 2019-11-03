@@ -1,0 +1,42 @@
+<h1>Hello world!</h1>
+
+<h1>Testing NGX Graph here:</h1>
+
+<ngx-graph
+  class="chart-container"
+  [view]="[1200, 500]"
+  layout="d3ForceDirected"
+  [links]="ngxLinks"
+  [nodes]="ngxNode"
+>
+
+
+<ng-template #nodeTemplate let-node>
+  <svg:g>
+    
+    <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="20">{{node.label}}</svg:text>
+  </svg:g>
+</ng-template>
+
+<ng-template #linkTemplate let-link>
+  <svg:g class="edge">
+    <svg:path
+      class="line"
+      stroke-width="2"
+      marker-end="url(#arrow)" >
+    </svg:path>
+    <svg:text
+      class="edge-label"
+      text-anchor="middle">
+    <textPath
+              style="fill: #666;"
+              [attr.href]="'#' + link.id"
+              startOffset="60%">
+      {{link.label}}
+    </textPath>
+  </svg:text>
+  </svg:g>
+</ng-template>
+</ngx-graph>
+
+<router-outlet></router-outlet>
