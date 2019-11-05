@@ -11,14 +11,24 @@ export class AppComponent {
   ngxNode =
   [
     {
-      id: 'first',
+      id: '1',
       label: 'A'
     }, {
-      id: 'second',
+      id: '2',
       label: 'B'
     }, {
-      id: 'third',
+      id: '3',
       label: 'C'
+    },
+    {
+      id: '4',
+      label: 'D'
+    }, {
+      id: '5',
+      label: 'E'
+    }, {
+      id: '6',
+      label: 'F'
     }
   ];
 
@@ -26,14 +36,38 @@ export class AppComponent {
   [
     {
       id: 'a',
-      source: 'first',
-      target: 'second',
+      source: '1',
+      target: '2',
       label: 'is parent of'
     }, {
       id: 'b',
-      source: 'first',
-      target: 'third',
+      source: '2',
+      target: '3',
       label: 'custom label'
-    }
+    },
+    {
+      id: 'c',
+      source: '1',
+      target: '3',
+      label: 'custom label'
+    },
+    {
+      id: 'd',
+      source: '1',
+      target: '4',
+      label: 'custom label'
+    },
+    {
+      id: 'e',
+      source: '3',
+      target: '5',
+      label: 'custom label'
+    },
+    {
+      id: 'f',
+      source: '3',
+      target: '6',
+      label: 'custom label'
+    },
   ];
 }

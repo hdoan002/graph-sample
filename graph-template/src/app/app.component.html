@@ -3,17 +3,26 @@
 <h1>Testing NGX Graph here:</h1>
 
 <ngx-graph
-  class="chart-container"
+  class=""
   [view]="[1200, 500]"
   layout="d3ForceDirected"
   [links]="ngxLinks"
   [nodes]="ngxNode"
 >
 
+<ng-template #defsTemplate>
+  <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+    <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+  </svg:marker>
+</ng-template>
 
 <ng-template #nodeTemplate let-node>
-  <svg:g>
-    
+  <svg:g class="node" ngx-tooltip [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" [tooltipTitle]="node.label">
+    <svg:rect
+      [attr.width]="node.dimension.width"
+      [attr.height]="node.dimension.height"
+      [attr.fill]="node.data.color"
+    />
     <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="20">{{node.label}}</svg:text>
   </svg:g>
 </ng-template>
