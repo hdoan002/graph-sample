@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,27 +9,46 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'graph-template';
 
+  view = [ window.innerWidth, window.innerHeight - 200 ];
+  autoZoom = true;
+  panOnZoom = true;
+  enableZoom = true;
+  autoCenter = true;
+  curve = false;
+
+  zoomToFit$: Subject<boolean> = new Subject();
+
   ngxNode =
   [
     {
       id: '1',
-      label: 'A'
-    }, {
+      label: 'Something A',
+      profile: 'This is alpha node.'
+    },
+    {
       id: '2',
-      label: 'B'
-    }, {
+      label: 'Something B',
+      profile: 'This is bravo node.'
+    },
+    {
       id: '3',
-      label: 'C'
+      label: 'Something C',
+      profile: 'This is charlie node.'
     },
     {
       id: '4',
-      label: 'D'
-    }, {
+      label: 'Something D',
+      profile: 'This is delta node.'
+    },
+    {
       id: '5',
-      label: 'E'
-    }, {
+      label: 'Something E',
+      profile: 'This is echo node.'
+    },
+    {
       id: '6',
-      label: 'F'
+      label: 'Something F',
+      profile: 'This is foxtrot node.'
     }
   ];
 
@@ -70,4 +90,28 @@ export class AppComponent {
       label: 'custom label'
     },
   ];
+
+  ngxCluster = [
+    {
+      id: '0',
+      label: 'Layer 0',
+      childNodeIds: ['1', '3', '4']
+    },
+    {
+      id: 'asdfasdf',
+      label: 'Layer 1',
+      childNodeIds: ['5', '6']
+    },
+    {
+      id: 'asdfasdfgdsafasd',
+      label: 'Layer 2',
+      childNodeIds: ['2']
+    }
+  ];
+
+  fitGraph() {
+    this.zoomToFit$.next(true);
+    console.log('Fitting');
+}
+
 }

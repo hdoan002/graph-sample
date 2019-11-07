@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TooltipModule } from 'ngx-tooltip';
-import { CountdownModule } from 'ngx-countdown',
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -17,8 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     NgxGraphModule,
+    NgxChartsModule,
     TooltipModule,
-    CountdownModule,
     BrowserAnimationsModule
   ],
   providers: [],
