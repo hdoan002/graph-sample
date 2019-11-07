@@ -6,4 +6,4 @@ Using:
 - NGX Tooltip
 - NGX Charts
 
-<img src=""/>
+<img src="https://github.com/hdoan002/graph-template/blob/master/Sample%20Graph%20Demo.png"/>
