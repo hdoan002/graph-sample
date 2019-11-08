@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 export class AppComponent {
   title = 'graph-template';
 
-  view = [ window.innerWidth, window.innerHeight - 200 ];
+  view = [ window.innerWidth, window.innerHeight - 300 ];
   autoZoom = true;
   panOnZoom = true;
   enableZoom = true;
