@@ -2,6 +2,10 @@
     background-color: #b3b3b3;
 }
 
+.button-space {
+    padding-right: 10px;
+}
+
 .container {
     padding: 30px;
 }
@@ -32,11 +36,14 @@
     outline: none; 
 }
 
+.edge:hover {
+    stroke: #f00;
+}
 
-
+/* 
 .edge {
     stroke: #666 !important;
-}
+} */
 /*  
 path {
     stroke: #666 !important;

@@ -1,6 +1,10 @@
 <div class="container">
   <h1>Testing NGX Graph here:</h1>
-  <button mat-raised-button color="primary" (click)="fitGraph()">Fit</button>
+  <div class="container">
+    <button mat-raised-button color="primary" (click)="fitGraph()">Fit</button>
+    <div class="button-space"></div>
+    <button mat-raised-button color="primary" (click)="centerGraph()">Center</button>
+  </div>
 </div>
 
 <div class="chart-container">
@@ -19,6 +23,7 @@
     [autoCenter]="autoCenter"
     [curve]="curve"
     [zoomToFit$]="zoomToFit$"
+    [center$]="center$"
   >
   
   <ng-template #defsTemplate>

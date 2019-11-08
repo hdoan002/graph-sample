@@ -17,6 +17,7 @@ export class AppComponent {
   curve = false;
 
   zoomToFit$: Subject<boolean> = new Subject();
+  center$: Subject<boolean> = new Subject();
 
   ngxNode =
   [
@@ -112,6 +113,11 @@ export class AppComponent {
   fitGraph() {
     this.zoomToFit$.next(true);
     console.log('Fitting');
-}
+  }
+
+  centerGraph() {
+    this.center$.next(true);
+    console.log('Centering');
+  }
 
 }
