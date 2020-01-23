@@ -10,10 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular Material Imports
 import {MatButtonModule} from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+// App components imports
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +27,7 @@ import {MatButtonModule} from '@angular/material/button';
     NgxChartsModule,
     TooltipModule,
     MatButtonModule,
+    MatToolbarModule,
     BrowserAnimationsModule
   ],
   providers: [],

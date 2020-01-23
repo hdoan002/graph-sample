@@ -1,0 +1,22 @@
+.button-space {
+    padding-right: 10px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row !important;
+}
+
+.flex-reverse {
+    display: flex;
+    flex-direction: row-reverse !important;
+}
+
+.full {
+    width: 100%;
+}
+
+.searchWidth {
+    max-width: 400px;
+    padding: 13px 0px 0px 0px;
+}

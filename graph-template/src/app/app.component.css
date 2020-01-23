@@ -6,8 +6,8 @@
     padding-right: 10px;
 }
 
-.container {
-    padding: 30px;
+.flex {
+    display: flex;
 }
 
 .chart-container {
@@ -37,7 +37,7 @@
 }
 
 .edge:hover {
-    stroke: #f00;
+    stroke: #f00 !important;
 }
 
 /* 
@@ -50,5 +50,5 @@ path {
 }
 */
 .arrowhead {
-    fill: #666;
+    fill: #000;
 }
