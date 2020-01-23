@@ -1,11 +1,4 @@
-<div class="container">
-  <h1>Testing NGX Graph here:</h1>
-  <div class="container">
-    <button mat-raised-button color="primary" (click)="fitGraph()">Fit</button>
-    <div class="button-space"></div>
-    <button mat-raised-button color="primary" (click)="centerGraph()">Center</button>
-  </div>
-</div>
+<app-navbar></app-navbar>
 
 <div class="chart-container">
   <ngx-graph
@@ -26,7 +19,7 @@
     [center$]="center$"
   >
   
-  <ng-template #defsTemplate>
+  <ng-template #defsTemplate let-def>
     <svg:marker 
       id="arrow" 
       viewBox="0 -5 10 10" 
@@ -38,24 +31,25 @@
       stroke-width="2"
       orient="auto"
     >
-      <svg:path d="M0,-5L10,0L0,5" fill="#666" class="arrow-head" />
+      <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
     </svg:marker>
   </ng-template>
   
   <ng-template #nodeTemplate let-node>
     <svg:g class="node" ngx-tooltip [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" [tooltipTitle]="node.profile">
-      <svg:rect
+      <svg:rect (click)="match(node.id)"
         [attr.rx]="3"
         [attr.width]="node.dimension.width"
         [attr.height]="node.dimension.height"
         [attr.fill]="node.data.color"
+
       />
-      <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="15">{{node.label}}</svg:text>
+      <svg:text (click)="match(node.id)" alignment-baseline="central" [attr.x]="10" [attr.y]="15">{{node.label}}</svg:text>
     </svg:g>
   </ng-template>
   
   <ng-template #linkTemplate let-link>
-    <svg:g class="edge">
+    <svg:g class="edge" [ngStyle]="link.color" >
       <svg:path
         class="line"
         stroke-width="2"
@@ -67,7 +61,7 @@
       <textPath
         style="fill: #666;"
         [attr.href]="'#' + link.id"
-        startOffset="60%"
+        startOffset="50%"
       >
         {{link.label}}
       </textPath>
