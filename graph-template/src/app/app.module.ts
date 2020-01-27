@@ -14,11 +14,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 // App components imports
 import { NavbarComponent } from './navbar/navbar.component';
+import { GraphComponent } from './graph/graph.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
