@@ -10,7 +10,7 @@ import { Node } from "../node";
   styleUrls: ["./graph.component.css"]
 })
 export class GraphComponent implements OnInit {
-  view = [window.innerWidth, window.innerHeight - 100];
+  view = [window.innerWidth - 18, window.innerHeight - 96];
   autoZoom = true;
   panOnZoom = true;
   enableZoom = true;
@@ -59,6 +59,18 @@ export class GraphComponent implements OnInit {
 
   getLinks(): void {
     this.graph.getLinks().subscribe(links => (this.links = links));
+  }
+
+  addNode() {
+    this.graph.addNode();
+    console.log("Nav bar adding node");
+    this.updateGraph();
+  }
+
+  addLink() {
+    this.graph.addLink1();
+    console.log("Nav bar adding link");
+    this.updateGraph();
   }
 
   fitGraph() {

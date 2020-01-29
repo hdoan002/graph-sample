@@ -1,4 +1,37 @@
-<button (click)="updateGraph()">UP</button>
+<mat-toolbar color="primary">
+  <span>NGX Graph</span>
+  <div class="button-space"></div>
+  <div class="button-space"></div>
+  <div class="flex">
+    <button mat-raised-button (click)="centerGraph()">Center graph</button>
+    <div class="button-space"></div>
+    <button mat-raised-button (click)="fitGraph()">Fit graph</button>
+    <div class="button-space"></div>
+    <button mat-raised-button (click)="addNode()">Add new node</button>
+    <div class="button-space"></div>
+    <button mat-raised-button (click)="addLink()">Add new link</button>
+    <div class="button-space"></div>
+    <button mat-raised-button (click)="fitGraph()">Add new cluster</button>
+    <div class="button-space"></div>
+    <button mat-raised-button (click)="updateGraph()">UP</button>
+  </div>
+  <div class="button-space"></div>
+  <div class="flex-reverse full">
+    <div class="input-group mb-3 searchWidth">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="basic-addon2"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-success" type="button">Search</button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
 <div class="chart-container">
   <ngx-graph
     class=""
