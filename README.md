@@ -1,7 +1,5 @@
 # Graph Template (Work in Progress)
 
-Testing graph visualization
-
 Using:
 - Angular Material
 - NGX Graph
