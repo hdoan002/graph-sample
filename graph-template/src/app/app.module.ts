@@ -1,38 +1,57 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
-import { AppRoutingModule } from './app-routing.module';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { TooltipModule } from 'ngx-tooltip';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from "./app-routing.module";
+import { NgxGraphModule } from "@swimlane/ngx-graph";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { TooltipModule } from "ngx-tooltip";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 // Angular Material Imports
-import {MatButtonModule} from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from "@angular/material/button";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
 
 // App components imports
-import { NavbarComponent } from './navbar/navbar.component';
-import { GraphComponent } from './graph/graph.component';
+import { AppComponent } from "./app.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { GraphComponent } from "./graph/graph.component";
+import { NodeDialogComponent } from "./node-dialog/node-dialog.component";
+import { LinkDialogComponent } from "./link-dialog/link-dialog.component";
+import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    GraphComponent
+    GraphComponent,
+    NodeDialogComponent,
+    LinkDialogComponent,
+    ClusterDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     NgxGraphModule,
     NgxChartsModule,
     TooltipModule,
     MatButtonModule,
     MatToolbarModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
     BrowserAnimationsModule
   ],
   providers: [],
+  entryComponents: [
+    NodeDialogComponent,
+    LinkDialogComponent,
+    ClusterDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

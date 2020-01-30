@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Add new node</h1>
+<div mat-dialog-content>
+  <mat-form-field class="full-width">
+    <p>Please enter node label:</p>
+    <input matInput [(ngModel)]="data.label" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.label" cdkFocusInitial>
+    Ok
+  </button>
+</div>

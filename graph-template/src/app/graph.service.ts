@@ -124,22 +124,23 @@ export class GraphService {
 
   constructor() {}
 
-  addNode() {
+  addNode(node: string) {
     this.ngxNode.push({
       id: "10000",
-      label: "Test",
-      profile: "This is test node."
+      label: node,
+      profile: "This is " + node + " node."
     });
-    this.addLink();
+    console.log(this.ngxNode);
+    // this.addLink();
     this.up();
   }
 
-  addLink() {
+  addLink(link: Link) {
     this.ngxLinks.push({
-      id: "z",
-      source: "2",
-      target: "10000",
-      label: "test label",
+      id: "1231231",
+      source: link.source,
+      target: link.target,
+      label: link.label,
       selected: false,
       color: {
         stroke: "#666"

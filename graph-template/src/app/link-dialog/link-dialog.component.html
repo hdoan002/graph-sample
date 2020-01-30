@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Add new link</h1>
+<div mat-dialog-content>
+  <mat-form-field class="full-width">
+    <p>Enter link label:</p>
+    <input matInput [(ngModel)]="data.label" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <p>Select source node:</p>
+    <input matInput [(ngModel)]="data.source" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <p>Select destination node:</p>
+    <input matInput [(ngModel)]="data.target" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    Ok
+  </button>
+</div>
