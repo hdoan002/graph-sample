@@ -3,6 +3,7 @@ import { Observable, of } from "rxjs";
 
 import { Link } from "./link";
 import { Node } from "./node";
+import { Cluster } from "./cluster";
 
 @Injectable({
   providedIn: "root"
@@ -160,6 +161,17 @@ export class GraphService {
       }
     });
   }
+
+
+  addCluster(cluster: Cluster) {
+    this.ngxCluster.push({
+      id: '',
+      label: cluster.label,
+      childNodeIds: cluster.childNodeIds
+    });
+  }
+
+
 
   up(): Observable<boolean> {
     return of(true);

@@ -45,7 +45,14 @@ export class GraphComponent implements OnInit {
       stroke: "#666"
     }
   };
-  newCluster: Cluster; // Variable to hold new cluster
+
+
+  // Variable to hold new cluster
+  newCluster: Cluster = {
+    id: "",
+    label: "",
+    childNodeIds: []
+  };
 
   // Variable used for link highlighting
   matched: Array<any>;
@@ -98,6 +105,11 @@ export class GraphComponent implements OnInit {
     this.updateGraph();
   }
 
+  addCluster(cluster: Cluster) {
+    this.graph.addCluster(cluster);
+    this.updateGraph();
+  }
+
   fitGraph() {
     this.zoomToFit$.next(true);
     console.log("Fitting");
@@ -120,7 +132,7 @@ export class GraphComponent implements OnInit {
       this.newNode.label = result;
       console.log(this.newNode.label);
 
-      if (this.newNode.label != "" && this.newNode.label != undefined) {
+      if (this.newNode.label !== "" && this.newNode.label !== undefined) {
         console.log("Adding new node");
         this.addNode(this.newNode.label); // Calls GraphService's addNode function
       }
@@ -136,13 +148,16 @@ export class GraphComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log("The dialog was closed");
-      this.newLink.label = result.label;
-      this.newLink.source = result.source;
-      this.newLink.target = result.target;
+      console.log(result);
+      if (result !== undefined) {
+        this.newLink.label = result.label;
+        this.newLink.source = result.source;
+        this.newLink.target = result.target;
+      }
 
       console.log(this.newLink);
-      if (this.newLink.label != "" && this.newLink.label != undefined) {
-        console.log("Adding new Link");
+      if (this.newLink.label !== "" && this.newLink.label !== undefined) {
+        console.log("Adding new link");
         this.addLink(this.newLink); // Calls GraphService's addLink function
       }
     });
@@ -155,10 +170,22 @@ export class GraphComponent implements OnInit {
       data: {}
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
     //   console.log('The dialog was closed');
     //   this.animal = result;
-    // });
+
+    console.log(result);
+    if (result !== undefined) {
+      this.newCluster.label = result.label;
+      this.newCluster.childNodeIds = result.childNodeIds;
+    }
+
+    console.log(this.newCluster);
+    if (this.newCluster.label !== "" && this.newCluster.label !== undefined) {
+      console.log("Adding new cluster");
+      this.addCluster(this.newCluster); // Calls GraphService's addLink function
+    }
+    });
   }
 
   match(node: string) {
