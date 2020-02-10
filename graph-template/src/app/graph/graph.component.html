@@ -13,7 +13,7 @@
     <div class="button-space"></div>
     <button mat-raised-button (click)="openCluster()">Add new cluster</button>
     <div class="button-space"></div>
-    <button mat-raised-button (click)="updateGraph()">UP</button>
+    <button mat-raised-button (click)="updateGraph()">Update Graph</button>
   </div>
   <div class="button-space"></div>
   <div class="flex-reverse full">
@@ -22,9 +22,16 @@
         type="text"
         class="form-control"
         placeholder="Search"
+        [formControl]="control"
+        [matAutocomplete]="auto"
         aria-label="Search"
         aria-describedby="basic-addon2"
       />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let label of filteredNodes | async" [value]="label">
+          {{ label }}
+        </mat-option>
+      </mat-autocomplete>
       <div class="input-group-append">
         <button class="btn btn-success" type="button">Search</button>
       </div>

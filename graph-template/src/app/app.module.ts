@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { NgxGraphModule } from "@swimlane/ngx-graph";
@@ -14,6 +14,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 // App components imports
 import { AppComponent } from "./app.component";
@@ -35,6 +36,7 @@ import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.componen
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NgxGraphModule,
     NgxChartsModule,
@@ -44,6 +46,7 @@ import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.componen
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
+    MatAutocompleteModule,
     BrowserAnimationsModule
   ],
   providers: [],

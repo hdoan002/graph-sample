@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
+import { startWith, map } from "rxjs/operators";
 import { GraphService } from "../graph.service";
 import { Link } from "../link";
 import { Node } from "../node";
@@ -24,8 +26,12 @@ export class GraphComponent implements OnInit {
 
   links: Link[];
   nodes: Node[];
-
+  nodeLabels: string[] = [];
   clusters = this.graph.ngxCluster;
+
+  control = new FormControl();
+
+  filteredNodes: Observable<string[]>;
 
   // Variable to hold new node
   newNode: Node = {
@@ -45,7 +51,6 @@ export class GraphComponent implements OnInit {
       stroke: "#666"
     }
   };
-
 
   // Variable to hold new cluster
   newCluster: Cluster = {
@@ -70,24 +75,23 @@ export class GraphComponent implements OnInit {
   ngOnInit() {
     this.getLinks();
     this.getNodes();
+
+    this.getLabels();
+
+    this.filterNodes();
   }
 
-  // getUp(): void {
-  //   this.graph.up().subscribe(up => {
-  //     if (up) {
-  //       this.updateGraph();
-  //       console.log("up");
-  //     }
-  //   });
-  // }
-
   updateGraph() {
+    this.getNodes();
+    this.getLinks();
+    this.filterNodes();
     this.update$.next(true);
     console.log("I have finished updating");
   }
 
   getNodes(): void {
     this.graph.getNodes().subscribe(nodes => (this.nodes = nodes));
+    this.getLabels();
   }
 
   getLinks(): void {
@@ -171,20 +175,45 @@ export class GraphComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
+      //   console.log('The dialog was closed');
+      //   this.animal = result;
 
-    console.log(result);
-    if (result !== undefined) {
-      this.newCluster.label = result.label;
-      this.newCluster.childNodeIds = result.childNodeIds;
-    }
+      console.log(result);
+      if (result !== undefined) {
+        this.newCluster.label = result.label;
+        this.newCluster.childNodeIds = result.childNodeIds;
+      }
 
-    console.log(this.newCluster);
-    if (this.newCluster.label !== "" && this.newCluster.label !== undefined) {
-      console.log("Adding new cluster");
-      this.addCluster(this.newCluster); // Calls GraphService's addLink function
-    }
+      console.log(this.newCluster);
+      if (this.newCluster.label !== "" && this.newCluster.label !== undefined) {
+        console.log("Adding new cluster");
+        this.addCluster(this.newCluster); // Calls GraphService's addLink function
+      }
+    });
+  }
+
+  filterNodes() {
+    this.filteredNodes = this.control.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.nodeLabels.filter(node =>
+      this._normalizeValue(node).includes(filterValue)
+    );
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toLowerCase().replace(/\s/g, "");
+  }
+
+  getLabels() {
+    this.nodeLabels = [];
+    this.nodes.forEach(element => {
+      this.nodeLabels.push(element.label);
     });
   }
 
