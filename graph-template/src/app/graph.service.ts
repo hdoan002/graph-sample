@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 import { Link } from "./link";
 import { Node } from "./node";
@@ -123,29 +124,55 @@ export class GraphService {
     }
   ];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   addNode(node: string) {
-    this.ngxNode.push({
-      id: "10000",
+    // this.ngxNode.push({
+    //   id: "10000",
+    //   label: node,
+    //   profile: "This is " + node + " node."
+    // });
+
+    console.log("Sending post request to server");
+    const post = this.http.post("/neo4j/addItem", {
       label: node,
-      profile: "This is " + node + " node."
+      profile: "This is " + node + " node"
     });
-    console.log(this.ngxNode);
+
+    post.subscribe(x => {
+      console.log("printing subscribe");
+      console.log(x);
+    });
+    // console.log(this.ngxNode);
     // this.addLink();
-    this.up();
+    // this.up();
   }
 
   addLink(link: Link) {
-    this.ngxLinks.push({
-      id: "1231231",
+    // this.ngxLinks.push({
+    //   id: "1231231",
+    //   source: link.source,
+    //   target: link.target,
+    //   label: link.label,
+    //   selected: false,
+    //   color: {
+    //     stroke: "#666"
+    //   }
+    // });
+    console.log("Sending post request to server");
+    const post = this.http.post("/neo4j/addLink", {
       source: link.source,
       target: link.target,
-      label: link.label,
-      selected: false,
-      color: {
-        stroke: "#666"
-      }
+      label: link.label
+      // selected: false,
+      // color: {
+      //   stroke: "#666"
+      // }
+    });
+
+    post.subscribe(x => {
+      console.log("printing subscribe");
+      console.log(x);
     });
   }
 
@@ -162,26 +189,39 @@ export class GraphService {
     });
   }
 
-
   addCluster(cluster: Cluster) {
-    this.ngxCluster.push({
-      id: '',
+    const post = this.http.post("/neo4j/addCluster", {
       label: cluster.label,
       childNodeIds: cluster.childNodeIds
     });
+
+    post.subscribe(x => {
+      console.log("printing subscribe");
+      console.log(x);
+    });
   }
 
-
+  // getSample() {
+  //   return this.http.get("/neo4j/get");
+  // }
 
   up(): Observable<boolean> {
+    // Deprecated
     return of(true);
   }
 
-  getNodes(): Observable<Node[]> {
-    return of(this.ngxNode);
+  getNodes() {
+    console.log("Sending get request to server");
+    const get = this.http.get("/neo4j/items");
+
+    return get;
+    // return of(this.ngxNode);
   }
 
-  getLinks(): Observable<Link[]> {
-    return of(this.ngxLinks);
+  getLinks() {
+    console.log("Sending get request to server");
+    const get = this.http.get("/neo4j/links");
+
+    return get;
   }
 }

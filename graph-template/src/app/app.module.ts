@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -35,6 +36,7 @@ import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.componen
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

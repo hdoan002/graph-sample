@@ -6,13 +6,43 @@
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <p>Select source node:</p>
-    <input matInput [(ngModel)]="data.source" />
+    <input
+      matInput
+      placeholder="Select Source Node"
+      aria-label="Source"
+      [matAutocomplete]="autoSrc"
+      [formControl]="sourceCtrl"
+      [(ngModel)]="data.source"
+    />
+    <mat-autocomplete #autoSrc="matAutocomplete">
+      <mat-option
+        *ngFor="let src of filteredSrcNodes | async"
+        [value]="src.uuid"
+      >
+        <span>{{ src.label }}</span> |
+        <small>UUID: {{ src.uuid }}</small>
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <p>Select destination node:</p>
-    <input matInput [(ngModel)]="data.target" />
+    <input
+      matInput
+      placeholder="Select Target Node"
+      aria-label="Select Target Node"
+      [matAutocomplete]="autoTar"
+      [formControl]="targetCtrl"
+      [(ngModel)]="data.target"
+    />
+    <mat-autocomplete #autoTar="matAutocomplete">
+      <mat-option
+        *ngFor="let tar of filteredTarNodes | async"
+        [value]="tar.uuid"
+      >
+        <span>{{ tar.label }}</span> |
+        <small>UUID: {{ tar.uuid }}</small>
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

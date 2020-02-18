@@ -24,10 +24,11 @@ export class GraphComponent implements OnInit {
   autoCenter = true;
   curve = false;
 
-  links: Link[];
-  nodes: Node[];
+  links: any = [];
+  nodes: any = [];
   nodeLabels: string[] = [];
-  clusters = this.graph.ngxCluster;
+  clusters = [];
+  // clusters = this.graph.ngxCluster;
 
   control = new FormControl();
 
@@ -73,34 +74,40 @@ export class GraphComponent implements OnInit {
   constructor(private graph: GraphService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.getLinks();
     this.getNodes();
+    this.getLinks();
 
-    this.getLabels();
-
-    this.filterNodes();
+    // this.showSample();
   }
 
   updateGraph() {
     this.getNodes();
     this.getLinks();
-    this.filterNodes();
+    // this.filterNodes();
     this.update$.next(true);
     console.log("I have finished updating");
   }
 
   getNodes(): void {
-    this.graph.getNodes().subscribe(nodes => (this.nodes = nodes));
-    this.getLabels();
+    console.log("[FUNCTION] getNodes");
+    this.graph.getNodes().subscribe(nodes => {
+      this.nodes = nodes;
+      console.log(this.nodes);
+      this.getLabels();
+      this.filterNodes();
+    });
   }
 
   getLinks(): void {
-    this.graph.getLinks().subscribe(links => (this.links = links));
+    console.log("[FUNCTION] getLinks");
+    this.graph.getLinks().subscribe(links => {
+      this.links = links;
+      console.log(this.links);
+    });
   }
 
   addNode(node: string) {
     this.graph.addNode(node);
-    console.log("Nav bar adding node");
     this.updateGraph();
   }
 
@@ -147,7 +154,10 @@ export class GraphComponent implements OnInit {
   openLink(): void {
     const dialogRef = this.dialog.open(LinkDialogComponent, {
       width: "500px",
-      data: {}
+      data: {
+        nodes: this.nodes,
+        nodeLabels: this.nodeLabels
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -171,7 +181,10 @@ export class GraphComponent implements OnInit {
   openCluster(): void {
     const dialogRef = this.dialog.open(ClusterDialogComponent, {
       width: "500px",
-      data: {}
+      data: {
+        nodes: this.nodes,
+        nodeLabels: this.nodeLabels
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -215,7 +228,15 @@ export class GraphComponent implements OnInit {
     this.nodes.forEach(element => {
       this.nodeLabels.push(element.label);
     });
+    console.log(this.nodeLabels);
   }
+
+  // showSample() {
+  //   // Test function
+  //   this.graph.getSample().subscribe((data: string) => {
+  //     console.log(data);
+  //   });
+  // }
 
   match(node: string) {
     console.log(this.links);

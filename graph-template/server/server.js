@@ -3,7 +3,6 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-
 // Routes
 const index = require("./routes/index");
 const neo4j = require("./routes/neo4j");
@@ -23,9 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Home route
 app.use("/", index);
-app.use("/neo4j", neo4j)
+app.use("/neo4j", neo4j);
 
 app.listen(port, function() {
   console.log("Server started on port " + port);
 });
-
