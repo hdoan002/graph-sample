@@ -10,6 +10,7 @@ import { Cluster } from "../cluster";
 import { NodeDialogComponent } from "../node-dialog/node-dialog.component";
 import { LinkDialogComponent } from "../link-dialog/link-dialog.component";
 import { ClusterDialogComponent } from "../cluster-dialog/cluster-dialog.component";
+import { ProfileDialogComponent } from "../profile-dialog/profile-dialog.component";
 
 @Component({
   selector: "app-graph",
@@ -29,6 +30,8 @@ export class GraphComponent implements OnInit {
   nodeLabels: string[] = [];
   clusters = [];
   // clusters = this.graph.ngxCluster;
+
+  srhSelect: any;
 
   control = new FormControl();
 
@@ -205,6 +208,19 @@ export class GraphComponent implements OnInit {
     });
   }
 
+  // Open cluster dialog
+  openProfile(item): void {
+    const dialogRef = this.dialog.open(ProfileDialogComponent, {
+      width: "500px",
+      height: "250px",
+      data: {
+        node: item
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {});
+  }
+
   filterNodes() {
     this.filteredNodes = this.control.valueChanges.pipe(
       startWith(""),
@@ -249,5 +265,14 @@ export class GraphComponent implements OnInit {
         this.matched.forEach(item => (item.color.stroke = "#666"));
       }
     }
+  }
+
+  searchSelect() {
+    console.log("Node selected: " + this.srhSelect);
+    let result = this.nodes.find(node => {
+      return node.label === this.srhSelect;
+    });
+    console.log(result);
+    this.openProfile(result);
   }
 }

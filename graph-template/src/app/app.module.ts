@@ -24,6 +24,7 @@ import { GraphComponent } from "./graph/graph.component";
 import { NodeDialogComponent } from "./node-dialog/node-dialog.component";
 import { LinkDialogComponent } from "./link-dialog/link-dialog.component";
 import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.component";
+import { ProfileDialogComponent } from "./profile-dialog/profile-dialog.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.componen
     GraphComponent,
     NodeDialogComponent,
     LinkDialogComponent,
-    ClusterDialogComponent
+    ClusterDialogComponent,
+    ProfileDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { ClusterDialogComponent } from "./cluster-dialog/cluster-dialog.componen
   entryComponents: [
     NodeDialogComponent,
     LinkDialogComponent,
-    ClusterDialogComponent
+    ClusterDialogComponent,
+    ProfileDialogComponent
   ],
   bootstrap: [AppComponent]
 })

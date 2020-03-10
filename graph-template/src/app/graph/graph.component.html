@@ -24,16 +24,23 @@
         placeholder="Search"
         [formControl]="control"
         [matAutocomplete]="auto"
+        [(ngModel)]="srhSelect"
         aria-label="Search"
         aria-describedby="basic-addon2"
       />
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let label of filteredNodes | async" [value]="label">
+        <mat-option
+          *ngFor="let label of filteredNodes | async"
+          [value]="label"
+          (click)="searchSelect()"
+        >
           {{ label }}
         </mat-option>
       </mat-autocomplete>
       <div class="input-group-append">
-        <button class="btn btn-success" type="button">Search</button>
+        <button class="btn btn-success" type="button" (click)="searchSelect()">
+          Search
+        </button>
       </div>
     </div>
   </div>
@@ -56,6 +63,7 @@
     [update$]="update$"
     [zoomToFit$]="zoomToFit$"
     [center$]="center$"
+    [layoutSettings]="{ orientation: 'TB' }"
   >
     <ng-template #defsTemplate let-def>
       <svg:marker
@@ -90,6 +98,7 @@
         />
         <svg:text
           (click)="match(node.id)"
+          (dblclick)="openProfile(node)"
           alignment-baseline="central"
           [attr.x]="10"
           [attr.y]="15"

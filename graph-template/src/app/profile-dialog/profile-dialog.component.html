@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ data.node.label }} Profile</h1>
+<div mat-dialog-content>
+  <div class="full-width">
+    <p>ID: {{ data.node.uuid }}</p>
+  </div>
+  <div class="full-width">
+    <p>Description: {{ data.node.profile }}</p>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="accent">Show related nodes</button>
+  <button mat-raised-button color="primary">Edit Node</button>
+  <button mat-raised-button color="warn">Delete</button>
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+</div>
