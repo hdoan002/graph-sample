@@ -27,7 +27,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "neo4j-driver": "^4.0.1",
     "ngx-countdown": "^8.0.2",
     "ngx-tooltip": "0.0.9",
